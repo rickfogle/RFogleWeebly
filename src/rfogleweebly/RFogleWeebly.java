@@ -1,6 +1,21 @@
 /**
- *
- * @author rfogle
+ * @author Rick Fogle
+ * @version 0.2.01
+ * GitHub URL: https://github.com/rickfogle/RFogleWeebly
+ * DESCRIPTION
+ * Project to automate testing of my personal website located at 
+ * http://www.rfogle.weebly.com and as an exercise in learning bot the Java
+ * language and the Selenium web test automation tool.  As a side effect, I 
+ * am learning to use the GIT source code control system.
+ * 
+ * DEPENDENCIES:
+ * website at http://www.rfogle.weebly.com, log4j, Selenium.
+ * 
+ * NOTES/CHANGES:
+ * 05/13/2016 RF: Project created.
+ * 05/13/2016 RF: Added log4j integration.
+ * 05/13/2016 RF: Created github repository and did initial commit, push.
+ * 
  */
 
 package rfogleweebly;

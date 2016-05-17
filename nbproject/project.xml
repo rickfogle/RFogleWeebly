@@ -6,6 +6,10 @@
             <name>RFogleWeebly</name>
             <source-roots>
                 <root id="src.dir"/>
+                <root id="src.CONTACT.dir"/>
+                <root id="src.HOME.dir"/>
+                <root id="src.MYRESUME.dir"/>
+                <root id="src.PHOTOS.dir"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>

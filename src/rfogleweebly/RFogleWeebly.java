@@ -31,9 +31,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import static org.junit.Assert.assertTrue;
 
 public class RFogleWeebly  {
     public static void main(String[] args) {
+        // Variable Declarations
+        String Title;
+
         // Here we need to create logger instance so we need to pass 
         // Class name for which  we want to create log file in my case 
         // Google is classname
@@ -53,14 +57,14 @@ public class RFogleWeebly  {
         // And now use this to visit my website.
         driver.get("http://rfogle.weebly.com");
         logger.info("Navigate to RFogle's Website.");
+        
         // Check the title of the page and report or exit if not correct.
          driver.manage().window().maximize();
         Title = driver.getTitle();
         System.out.println("Page title is: "+Title);
-        Assert.assertTrue(Title.contains("rfogle.com"));
+//        Assert.assertTrue(Title.contains("rfogle.com"));
+        assertTrue("Did not get to the page", Title.contains("Home"));
 
-        // Should see: "cheese! - Google Search"
-        System.out.println("Page title is: " + driver.getTitle());
         logger.info("Test complete, quitting test.");
         logger.info("********** End of RFogleWeebly test run **********");
         //Close the browser

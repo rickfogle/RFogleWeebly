@@ -20,24 +20,28 @@
 
 package rfogleweebly;
 
-// import external libraries for Selenium
+// import external classes/libraries for Selenium
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
-// import external libraries for log4j
+
+// import external classes/libraries for log4j
 import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+
+// import external classes/libraries for JUnit.
 import static org.junit.Assert.assertTrue;
 
 public class RFogleWeebly  {
     public static void main(String[] args) {
         // Variable Declarations
         String Title;
-
+        int Status = 0;  // Used to track and report status as the test runs.  0 = pass, 1
+                
         // Here we need to create logger instance so we need to pass 
         // Class name for which  we want to create log file in my case 
         // Google is classname
@@ -62,11 +66,11 @@ public class RFogleWeebly  {
          driver.manage().window().maximize();
         Title = driver.getTitle();
         System.out.println("Page title is: "+Title);
-//        Assert.assertTrue(Title.contains("rfogle.com"));
         assertTrue("Did not get to the page", Title.contains("Home"));
 
         logger.info("Test complete, quitting test.");
         logger.info("********** End of RFogleWeebly test run **********");
+
         //Close the browser
         driver.quit();
     }

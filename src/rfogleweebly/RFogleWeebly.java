@@ -27,6 +27,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.Wait;
 
 // import external classes/libraries for log4j
 import java.util.concurrent.TimeUnit;
@@ -34,9 +35,12 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 // import external classes/libraries for JUnit.
-import static org.junit.Assert.assertTrue;
 
 public class RFogleWeebly  {
+    
+    static WebDriver driver;
+    static Wait<WebDriver> wait;
+
     public static void main(String[] args) {
         // Variable Declarations
         String Title;
@@ -53,11 +57,11 @@ public class RFogleWeebly  {
         // Create a new instance of the Firefox driver
         // Notice that the remainder of the code relies on the interface, 
         // not the implementation.
-        logger.info("********** Start of test run **********");
-
         WebDriver driver = new FirefoxDriver();
+        wait = new WebDriverWait(driver, 30);
+        logger.info("********** Start of test run **********");
         logger.info("Browser Opened.");
-        
+    
         // And now use this to visit my website.
         driver.get("http://rfogle.weebly.com");
         logger.info("Navigate to RFogle's Website.");
@@ -66,7 +70,6 @@ public class RFogleWeebly  {
          driver.manage().window().maximize();
         Title = driver.getTitle();
         System.out.println("Page title is: "+Title);
-        assertTrue("Did not get to the page", Title.contains("Home"));
 
         logger.info("Test complete, quitting test.");
         logger.info("********** End of RFogleWeebly test run **********");
@@ -75,3 +78,51 @@ public class RFogleWeebly  {
         driver.quit();
     }
 }
+/*
+// Example Code
+public class GoogleSearch {
+    static WebDriver driver;
+    static Wait<WebDriver> wait;
+
+    public static void main(String[] args) {
+        driver = new FirefoxDriver();
+        wait = new WebDriverWait(driver, 30);
+        driver.get("http://www.google.com/");
+
+        boolean result;
+        try {
+            result = firstPageContainsQAANet();
+        } catch(Exception e) {
+            e.printStackTrace();
+            result = false;
+        } finally {
+            driver.close();
+        }
+
+        System.out.println("Test " + (result? "passed." : "failed."));
+        if (!result) {
+            System.exit(1);
+        }
+    }
+
+    private static boolean firstPageContainsQAANet() {
+        //type search query
+        driver.findElement(By.name("q")).sendKeys("qa automation\n");
+
+        // click search
+        driver.findElement(By.name("btnG")).click();
+
+        // Wait for search to complete
+        wait.until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver webDriver) {
+                System.out.println("Searching ...");
+                return webDriver.findElement(By.id("resultStats")) != null;
+            }
+        });
+
+        // Look for QAAutomation.net in the results
+        return driver.findElement(By.tagName("body")).getText().contains("qaautomation.net");
+    }
+}
+
+*/

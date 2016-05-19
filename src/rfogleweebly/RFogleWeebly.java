@@ -38,7 +38,7 @@ import org.apache.log4j.PropertyConfigurator;
 
 public class RFogleWeebly  {
     
-    static WebDriver driver;
+    static WebDriver browserWindow;
     static Wait<WebDriver> wait;
 
     public static void main(String[] args) {
@@ -57,25 +57,24 @@ public class RFogleWeebly  {
         // Create a new instance of the Firefox driver
         // Notice that the remainder of the code relies on the interface, 
         // not the implementation.
-        WebDriver driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, 30);
+        WebDriver browserWindow = new FirefoxDriver();
+        wait = new WebDriverWait(browserWindow, 30);
         logger.info("********** Start of test run **********");
         logger.info("Browser Opened.");
     
         // And now use this to visit my website.
-        driver.get("http://rfogle.weebly.com");
+        browserWindow.get("http://rfogle.weebly.com");
         logger.info("Navigate to RFogle's Website.");
         
         // Check the title of the page and report or exit if not correct.
-         driver.manage().window().maximize();
-        Title = driver.getTitle();
-        System.out.println("Page title is: "+Title);
-
+         browserWindow.manage().window().maximize();
+        Title = browserWindow.getTitle();
+        logger.info("Verified that the window title is: "+Title);
         logger.info("Test complete, quitting test.");
         logger.info("********** End of RFogleWeebly test run **********");
 
         //Close the browser
-        driver.quit();
+        browserWindow.quit();
     }
 }
 /*
